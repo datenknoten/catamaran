@@ -1,8 +1,9 @@
 import { NgModule } from "@angular/core";
-import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbOverlayModule, NbThemeModule } from "@nebular/theme";
+import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbOverlayModule, NbThemeModule, NbUserModule, NbMenuModule } from "@nebular/theme";
 import { MainPage } from "./main-page/main-page.component";
 import { RouterModule } from "@angular/router";
 import { NbOverlayContainerAdapter, NbOverlayContainer } from "@nebular/theme/components/cdk";
+import { BrowserModule } from "@angular/platform-browser";
 
 @NgModule({
     declarations: [
@@ -12,9 +13,12 @@ import { NbOverlayContainerAdapter, NbOverlayContainer } from "@nebular/theme/co
         MainPage,
     ],
     imports: [
+        BrowserModule,
         NbThemeModule,
         NbSidebarModule,
         NbLayoutModule,
+        NbUserModule,
+        NbMenuModule,
         RouterModule,
     ],
     providers: [

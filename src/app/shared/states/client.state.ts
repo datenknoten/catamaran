@@ -24,7 +24,7 @@ export class ClientState {
         state.patchState({
             client,
         });
-        console.log(client);
+
         state.dispatch(new InitClientSuccess());
     }
 }

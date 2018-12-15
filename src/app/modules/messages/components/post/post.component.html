@@ -1,0 +1,78 @@
+<div class="flex-container">
+    <div class="details column">
+        <nb-card accent="info">
+            <nb-card-body>
+                <div class="image">
+                    <img [attr.src]="getPicture(post.author)">
+                </div>
+                <div class="first extra content">
+                    <h3>
+                        <a href="">
+                            {{ post.author ? post.author.primaryName ? post.author.primaryName.name : post.author.id : 'Unknown' }}
+                        </a>
+                    </h3>
+                </div>
+                <div class="extra icon content">
+                    <a [routerLink]="['/post', post.id]" *ngIf="mode === 'condensed'">
+                        <fa-icon icon="reply"></fa-icon>
+                    </a>
+                    <a (click)="replyPost(post)" *ngIf="mode === 'full' || mode === 'comment'">
+                        <fa-icon icon="reply"></fa-icon>
+                    </a>
+
+                    <a href="https://viewer.scuttlebot.io/{{ escapeID(post.id) }}">
+                        <fa-icon icon="globe"></fa-icon>
+                    </a>
+
+                    <a (click)="debug()">
+                        <fa-icon icon="coffee"></fa-icon>
+                    </a>
+                </div>
+                <div class="extra content">
+                    <a [routerLink]="['/post', post.id]">
+                        <ng-container *ngIf="!post.isMissing">
+                            <p *ngIf="mode === 'condensed'">
+                                <i title="Latest activity at" class="calendar alternate outline icon"></i>
+                                {{ toIsoDate(post.lastActivity) }}
+                            </p>
+                            <p *ngIf="mode === 'full' || mode === 'comment'">
+                                <i title="Posted at" class="calendar alternate outline icon"></i>
+                                {{ toIsoDate(post.createdAt) }}
+                            </p>
+                        </ng-container>
+                    </a>
+                </div>
+
+                <div class="extra content" *ngIf="post.channel">
+                    <p><fa-icon icon="hashtag"></fa-icon> {{ post.channel }}</p>
+                </div>
+
+                <div class="extra content" *ngIf="mode !== 'comment' && post.comments.length > 0">
+                    <a [routerLink]="['/post', post.id]">
+                        <p>Comments by</p>
+                        <div class="stacked image container">
+                            <div class="image" *ngFor="let comment of aggregateComments">
+                                <img title="{{ comment.author.primaryName.name }} commented {{ comment.activity | humanReadableDate }}" class="ui mini image"
+                                    [src]="getPicture(comment.author)">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <nb-card class="content column crosshatch" accent="green">
+        <nb-card-body>
+            <div class="content column crosshatch" [innerHtml]="post | rendermd">
+            </div>
+        </nb-card-body>
+    </nb-card>
+</div>
+
+<ng-container *ngIf="mode == 'full'">
+    <nb-list>
+        <nb-list-item *ngFor="let comment of post.comments | sortPosts:'desc'">
+            <post [post]="comment" mode="comment"></post>
+        </nb-list-item>
+    </nb-list>
+</ng-container>

@@ -3,6 +3,9 @@ import { Action, State, StateContext, Store } from '@ngxs/store';
 import { InitClientSuccess } from '../actions/init-client-success.action';
 import { GlobalState } from './global.state';
 import { tap } from 'rxjs/operators';
+import { FetchPublicFeed } from '../actions/fetch-public-feed.action';
+import { RegisterIdentity } from '../actions/register-identity.action';
+import { RouterNavigation, Navigate } from '@ngxs/router-plugin';
 
 export interface MessageStateModel {
     messages: PostMessage[];
@@ -19,23 +22,41 @@ export class MessageState {
         private store: Store,
     ) {}
 
+    @Action(FetchPublicFeed)
     @Action(InitClientSuccess)
-    public fetch(state: StateContext<MessageStateModel>) {
-        state.setState({
-            messages: [],
-        });
+    public fetchPublicFeed(state: StateContext<MessageStateModel>, action: InitClientSuccess | FetchPublicFeed) {
+        let loadMore = false;
+        let reset = false;
+        if (action instanceof FetchPublicFeed) {
+            loadMore = action.loadMore;
+            reset = action.reset;
+        }
+        if (reset === true) {
+            state.setState({
+                messages: [],
+            });
+        }
+
         const client = this.store.selectSnapshot((state: GlobalState) => state.client.client);
-        console.log(client);
+
+        if (typeof client === 'undefined') {
+            return;
+        }
+
         client
             .message
-            .fetchPublicFeed()
+            .fetchPublicFeed(loadMore)
             .subscribe((post) => {
-                const posts = state.getState().messages;
+                this.store.dispatch(new RegisterIdentity(post.author));
+                const _state = state.getState();
+
                 state.patchState({
                     messages: [
-                        ...posts,
+                        ..._state.messages,
                         post,
-                    ]
+                    ].filter((value, index, self) => {
+                        return self.indexOf(value) === index;
+                    }),
                 });
             });
     }

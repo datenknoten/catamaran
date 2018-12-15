@@ -1,1 +1,21 @@
+@import 'variables';
 
+.content.column img {
+    max-width: 100%;
+}
+
+.nb-theme-default a {
+    color: inherit;
+}
+
+.nb-theme-default a:hover {
+    color: $main-colour;
+}
+
+post nb-card blockquote {
+    margin: 0;
+    padding-left: 1rem;
+    border-left: 1rem solid $main-colour;
+    padding-top: $small-gap;
+    padding-bottom: $small-gap;
+}

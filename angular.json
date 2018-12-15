@@ -27,6 +27,7 @@
             ],
               "styles": [
                   "node_modules/@nebular/theme/styles/prebuilt/default.css",
+                  "node_modules/highlight.js/styles/agate.css",
                   "src/styles.scss"
             ],
             "scripts": []

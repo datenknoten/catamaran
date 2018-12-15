@@ -1,0 +1,159 @@
+@import '../../../../../variables.scss';
+
+nb-card {
+    border-top: $thick-gap solid $main-colour;
+}
+
+.nb-theme-default nb-list-item {
+    padding: 0;
+    padding-top: $thick-gap;
+}
+
+img {
+    max-width: 100%;
+    border-radius: .3125em;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+}
+
+.content.column {
+    overflow: hidden;
+    order: 0;
+    flex: 1 1 auto;
+    align-self: stretch;
+    padding-right: $thick-gap;
+    margin-bottom: 0;
+
+    img {
+        max-width: 100%;
+    }
+
+    &.missing {
+        background: repeating-linear-gradient(
+            135deg,
+            rgba(255,255,255, 1),
+            rgba(255,255,255, 1) 10px,
+            rgba(240,230,140, 1) 10px,
+            rgba(240,230,140, 1) 20px
+        );
+    }
+}
+
+.details.column {
+    align-self: stretch;
+    order: 1;
+    flex: 0 1 auto;
+
+    max-width: 240px;
+    min-width: 240px;
+    width: 240px;
+
+    padding-left: $thick-gap;
+
+    nb-card {
+        border-top: 0;
+    }
+    nb-card-body {
+        padding: 0;
+    }
+
+    .extra.content {
+        padding: $medium-gap;
+        border-top: 1px solid rgba($main-colour, 0.3);
+
+        h3,p {
+            margin: 0;
+        }
+
+        &.first {
+            border-top: 0;
+        }
+
+        &.icon a {
+            display: inline-block;
+            padding-left: $small-gap;
+            padding-right: $small-gap;
+        }
+
+        &.icon a:first-child {
+            padding-left: 0;
+        }
+
+        &.icon a:last-child {
+            padding-right: 0;
+        }
+    }
+
+    .extra.content:first-child {
+        border-top: 0;
+    }
+
+    .extra.content.container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+
+        & > * {
+            flex: 1 1 auto;
+        }
+
+        & > .primary-channel {
+            width: 100%;
+            padding-top: 0.25em;
+        }
+    }
+
+    p {
+        padding-bottom: 0.25rem;
+    }
+
+    .stacked.image.container {
+        display: flow-root;
+
+        .image {
+            display: inline-block;
+            width: 35px;
+            height: auto;
+            border-radius: 0;
+            float: left;
+        }
+
+        .self.container:hover {
+            .icon {
+                visibility: initial;
+            }
+
+            .image {
+                filter: blur(2px);
+            }
+        }
+
+        .self.container {
+            position: relative;
+
+            .icon {
+                position: absolute;
+                visibility: hidden;
+                width: 100%;
+                height: 100%;
+                color: white;
+                z-index: 9999;
+            }
+        }
+    }
+}
+
+nb-list nb-list-item {
+    padding-left: 0;
+    padding-right: 0;
+}

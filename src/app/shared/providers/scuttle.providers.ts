@@ -12,8 +12,6 @@ export class Scuttle {
     }
 
     public async init() {
-        console.log('oh hai', nodeClient);
-        this.client = await nodeClient.create();
-        console.log(this.client);
+
     }
 }

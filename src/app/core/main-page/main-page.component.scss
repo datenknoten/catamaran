@@ -1,0 +1,14 @@
+nb-menu {
+    padding-top: 1.25rem;
+}
+
+nb-layout {
+    nb-layout-footer[fixed] {
+        position: fixed;
+        z-index: 1040;
+        bottom: 0;
+        width: 100%;
+        box-shadow: none !important;
+        justify-content: left;
+    }
+}
