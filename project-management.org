@@ -1,0 +1,56 @@
+#+TITLE: Catamaran Tasks
+
+This scope of the document is to organize the development effort of
+[[https://github.com/datenknoten/catamaran][catamaran]] and [[https://github.com/datenknoten/catamaran-hull][hull]].
+
+* Tasks
+** Load Blogposts
+** Load Gatherings
+* Epics
+** Public Feed
+As a identiy on the network, I want too see all public posts from people
+that I have subscribed.
+** Private Feed
+As an identity on the network, I want to see all posts that have been directly
+encrypted to me.
+** Mentions
+As an identity on the network, I want to see all posts, where I have been mentioned.
+** Particpating Discussions
+As an identity on the network, I want to see all posts, where I have
+participated, either by creating a comment or leaving a vote.
+** Gatherings
+** Blogposts
+** Message Composition
+* Glossary
+** Identity
+A identity is a entity that participates in the network with other identities.
+A Identity creates content and is consuming it. On a technical level is an
+identity defined by its ed25519-keypair.
+** Feed
+A Feed is a stream of posts. It is sorted by date descending, which means that
+the newest posts are at the top of thee feed. A feed can have a variety of
+post-types.
+** Post
+A post is the primitive of all entities of the network. It has some basic
+assumptions, which are:
+
+- Author → An [[*Identity][identity]] who created the post
+- Date → The date the author claims to have it published. This is a bit trickey,
+  because we have to trust the author on this on.
+- Channel → An optional taxonomy, to categorize the post.
+- Recipients → If the message is gonna be encrypted to a certain audience all
+  the [[*Identity][identities]] are gonna be listed here.
+** Message
+A message is a type of [[*Post][post]] contains markdown formated text. The content directly
+embedded into the post, but restricted to 8000 characters. If you want to
+publish more, look at a [[*Blogpost*][blogpost]].
+** Blob
+Blob is short for *b*inary *l*arge *ob*ject. This means it is some sort of file,
+mostly images. blobs are not directly stored on the network because their size
+would make network computations more complex.
+** Blogpost
+Like a [[*Message][message]], but the content is not inside the [[*Post][post]], but in a [[*Blob*][blob]].
+** Gathering
+A gathering is a type of [[*Post*][post]], where [[*Identity][identities]] can organize a gathering either
+in the cypherspace or in the meatspace. [[*Identity][identities]] can attend or not attend to
+gathering.
