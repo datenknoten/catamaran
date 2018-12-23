@@ -3,20 +3,23 @@
 This scope of the document is to organize the development effort of
 [[https://github.com/datenknoten/catamaran][catamaran]] and [[https://github.com/datenknoten/catamaran-hull][hull]].
 
+* Vision
+[[https://github.com/datenknoten/catamaran][catamaran]] is a client for the [[https://www.scuttlebutt.nz/][scuttlebutt]] network. It allows you to create
+content and publish it on the network.
 * Tasks
 ** Load Blogposts
 ** Load Gatherings
 * Epics
 ** Public Feed
-As a identiy on the network, I want too see all public posts from people
+As a [[*Identity][identity]] on the network, I want too see all public [[*Post][posts]] from people
 that I have subscribed.
 ** Private Feed
-As an identity on the network, I want to see all posts that have been directly
+As an [[*Identity][identity]] on the network, I want to see all [[*Post][posts]] that have been directly
 encrypted to me.
 ** Mentions
-As an identity on the network, I want to see all posts, where I have been mentioned.
+As an [[*Identity][identity]] on the network, I want to see all [[*Post][posts]], where I have been mentioned.
 ** Particpating Discussions
-As an identity on the network, I want to see all posts, where I have
+As an [[*Identity][identity]] on the network, I want to see all [[*Post][posts]], where I have
 participated, either by creating a comment or leaving a vote.
 ** Gatherings
 ** Blogposts
@@ -37,20 +40,42 @@ assumptions, which are:
 - Author → An [[*Identity][identity]] who created the post
 - Date → The date the author claims to have it published. This is a bit trickey,
   because we have to trust the author on this on.
-- Channel → An optional taxonomy, to categorize the post.
+- Channel → An optional taxonomy, to categorize the post. There was discussion,
+  to deprecate this in favor of [[https://github.com/wittjosiah/ssb-tags][ssb-tags]].
 - Recipients → If the message is gonna be encrypted to a certain audience all
   the [[*Identity][identities]] are gonna be listed here.
+
+Synonyms: content
+** Post Type
+A post can have several types. Types known so far:
+
+- [[*Message][Message]]
+- [[*Gathering][Gathering]]
+- [[*Blogpost][Blogpost]]
+- Vote
+- Subscription
+- About
+- Pub
 ** Message
 A message is a type of [[*Post][post]] contains markdown formated text. The content directly
 embedded into the post, but restricted to 8000 characters. If you want to
-publish more, look at a [[*Blogpost*][blogpost]].
+publish more, look at a [[*Blogpost][blogpost]].
 ** Blob
-Blob is short for *b*inary *l*arge *ob*ject. This means it is some sort of file,
+Blob is short for binary large object. This means it is some sort of file,
 mostly images. blobs are not directly stored on the network because their size
 would make network computations more complex.
 ** Blogpost
-Like a [[*Message][message]], but the content is not inside the [[*Post][post]], but in a [[*Blob*][blob]].
+Like a [[*Message][message]], but the content is not inside the [[*Post][post]], but in a [[*Blob][blob]].
 ** Gathering
-A gathering is a type of [[*Post*][post]], where [[*Identity][identities]] can organize a gathering either
+A gathering is a type of [[*Post][post]] where [[*Identity][identities]] can organize a gathering either
 in the cypherspace or in the meatspace. [[*Identity][identities]] can attend or not attend to
 gathering.
+** Replication
+Replication describes the process of copying posts from and to another
+participant. The process is a bit complicated because you will only download
+content from participants you have subscribed.
+** Public Content
+Because your [[*Feed][feed]] behaves like a [[https://en.wikipedia.org/wiki/Blockchain][blockchain]] (without a [[https://en.wikipedia.org/wiki/Proof-of-work_system][proof of work]]), every
+[[*Post][post]] has a link to the previous [[*Post][post]]. This has the sideeffect, that you can not
+remove a [[*Post][post]] in your chain, because you would have to rewrite your whole
+[[*Feed][feed]] and this would make [[*Replication][replication]] infinitely more complex.
