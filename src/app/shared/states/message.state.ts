@@ -1,4 +1,4 @@
-import { PostMessage } from '@catamaran/hull';
+import { Content } from '@catamaran/hull';
 import { Action, State, StateContext, Store } from '@ngxs/store';
 import { InitClientSuccess } from '../actions/init-client-success.action';
 import { GlobalState } from './global.state';
@@ -8,7 +8,7 @@ import { RegisterIdentity } from '../actions/register-identity.action';
 import { RouterNavigation, Navigate } from '@ngxs/router-plugin';
 
 export interface MessageStateModel {
-    messages: PostMessage[];
+    messages: Content[];
 }
 
 @State<MessageStateModel>({

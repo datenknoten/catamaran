@@ -1,12 +1,12 @@
-import { Component, ViewChild, HostListener } from "@angular/core";
+import { Component, HostListener } from "@angular/core";
 import { Store } from "@ngxs/store";
 import { Observable } from "rxjs";
-import { PostMessage } from "@catamaran/hull";
 import { GlobalState } from "src/app/shared/states/global.state";
 import { FetchPublicFeed } from "src/app/shared/actions/fetch-public-feed.action";
 import { Router, Scroll } from "@angular/router";
 import { filter, delay } from 'rxjs/operators';
 import { ViewportScroller } from "@angular/common";
+import { Content } from "@catamaran/hull";
 
 @Component({
     selector: 'public-feed',
@@ -14,7 +14,7 @@ import { ViewportScroller } from "@angular/common";
     styleUrls: [ './public-feed.component.scss' ],
 })
 export class PublicFeed {
-    public posts: Observable<PostMessage[]>;
+    public posts: Observable<Content[]>;
 
     public constructor(
         private store: Store,

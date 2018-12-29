@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
 import { Store } from "@ngxs/store";
 import { Observable } from "rxjs";
-import { PostMessage } from "@catamaran/hull";
+import { Content } from "@catamaran/hull";
 import { GlobalState } from "src/app/shared/states/global.state";
 import { switchMap } from "rxjs/operators";
 
@@ -11,7 +11,7 @@ import { switchMap } from "rxjs/operators";
     templateUrl: './post-detail.component.html',
 })
 export class PostDetail {
-    public post: Observable<PostMessage>;
+    public post: Observable<Content>;
 
     public constructor(
         private store: Store,

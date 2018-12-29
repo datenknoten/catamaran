@@ -6,14 +6,13 @@ import {
     Pipe,
     PipeTransform,
 } from '@angular/core';
-import * as moment from 'moment';
-import { PostMessage } from '@catamaran/hull';
+import { Content } from '@catamaran/hull';
 
 @Pipe({
     name: 'sortPosts',
 })
 export class SortPostsPipe implements PipeTransform {
-    public transform(value: PostMessage[], direction: 'ASC' | 'DESC' = 'ASC'): any {
+    public transform(value: Content[], direction: 'ASC' | 'DESC' = 'ASC'): any {
         if (!Array.isArray(value)) {
             return;
         }
@@ -23,9 +22,9 @@ export class SortPostsPipe implements PipeTransform {
         }
 
         if (direction === 'ASC') {
-            return value.slice().sort((a: PostMessage, b: PostMessage) => +b.lastActivity - +a.lastActivity);
+            return value.slice().sort((a: Content, b: Content) => +b.lastActivity - +a.lastActivity);
         } else {
-            return value.slice().sort((a: PostMessage, b: PostMessage) => +a.lastActivity - +b.lastActivity);
+            return value.slice().sort((a: Content, b: Content) => +a.lastActivity - +b.lastActivity);
         }
     }
 

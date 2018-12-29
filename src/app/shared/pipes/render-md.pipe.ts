@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PostMessage } from '@catamaran/hull';
 
 const md = window.require('ssb-markdown');
 
@@ -17,16 +16,11 @@ export class RenderMd implements PipeTransform {
         }
     }
 
-    public transform(post: PostMessage) {
-        if (post.text) {
-            return md.block(post.text, {
-                imageLink: this.transformLink,
-                toUrl: this.transformLink,
-            });
-        } else if(post.raw && post.raw.value && post.raw.value.content) {
-            return `<pre><code>${JSON.stringify(post.raw.value.content, undefined, 4)}</code></pre>`;
-        } else {
-            return '';
-        }
+    public transform(text: string) {
+        return md.block(text, {
+            imageLink: this.transformLink,
+            toUrl: this.transformLink,
+        });
+
     }
 }

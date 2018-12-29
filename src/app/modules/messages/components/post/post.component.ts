@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { PostMessage, Identity } from "@catamaran/hull";
+import { Identity, Content } from "@catamaran/hull";
 import * as moment from 'moment';
 import Avatars from '@dicebear/avatars';
 import SpriteCollection from '@dicebear/avatars-identicon-sprites';
@@ -18,7 +18,7 @@ type AuthorActivity = {
 })
 export class Post {
     @Input()
-    public post: PostMessage;
+    public post: Content;
 
     @Input()
     public mode: 'condensed' | 'full' | 'draft' | 'comment' = 'condensed';

@@ -11,6 +11,8 @@ import { SortPostsPipe } from 'src/app/shared/pipes/sort-posts.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCoffee, faReply, faGlobe, faHashtag } from '@fortawesome/free-solid-svg-icons';
+import { MessageContent } from './components/message-content/message-content.component';
+import { GatheringContent } from './components/gathering-content/gathering-content.compontent';
 
 @NgModule({
     declarations: [
@@ -20,6 +22,8 @@ import { faCoffee, faReply, faGlobe, faHashtag } from '@fortawesome/free-solid-s
         RenderMd,
         HumanReadableDatePipe,
         SortPostsPipe,
+        MessageContent,
+        GatheringContent,
     ],
     imports: [
         NbSidebarModule,
