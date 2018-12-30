@@ -11,7 +11,7 @@ import { Scuttle } from './shared/providers/scuttle.providers';
 import { NgxsModule } from '@ngxs/store';
 import { ClientState } from './shared/states/client.state';
 import { MessageState } from './shared/states/message.state';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService, NbOverlayModule, NbOverlayService, NbListModule, NbMenuModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService, NbOverlayModule, NbOverlayService, NbListModule, NbMenuModule, NbWindowModule } from '@nebular/theme';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { MainPage } from './core/main-page/main-page.component';
@@ -48,6 +48,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         CoreModule,
         MessagesModule,
         FontAwesomeModule,
+        NbWindowModule.forRoot(),
     ],
     providers: [
         RenderMd,

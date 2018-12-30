@@ -1,0 +1,24 @@
+<div class="editor-preview" *ngIf="!visible">
+    <input placeholder="Type in here to compose a new post…" type="text" (focus)="setupEditor()">
+</div>
+<nb-card class="content column crosshatch" accent="green" *ngIf="visible">
+    <nb-card-header>
+        New Post
+    </nb-card-header>
+    <nb-card-body>
+        <textarea #editor></textarea>
+    </nb-card-body>
+    <nb-card-footer>
+        <ul>
+            <li>You can use <a href="https://guides.github.com/features/mastering-markdown/">Markdown</a> here to format your post.</li>
+            <li>You can drop Images or other Files here.</li>
+            <li>Usable emojis can be found on <a href="https://www.webpagefx.com/tools/emoji-cheat-sheet/">https://www.webpagefx.com/tools/emoji-cheat-sheet/</a></li>
+            <li>You can search for Identities, Blobs and Emojis by entering part of the word and pressing the keys ctrl and space at the same time.</li>
+            <li>Please be aware, that once you post your message it is in the eternal log and can't be deleted.</li>
+        </ul>
+    </nb-card-footer>
+    <nb-card-footer>
+        <button nbButton (click)="cancel()">Cancel</button>
+        <button nbButton>Post</button>
+    </nb-card-footer>
+</nb-card>

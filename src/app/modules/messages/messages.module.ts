@@ -13,6 +13,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCoffee, faReply, faGlobe, faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { MessageContent } from './components/message-content/message-content.component';
 import { GatheringContent } from './components/gathering-content/gathering-content.compontent';
+import { MessageEditor } from './components/message-editor/message-editor.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { GatheringContent } from './components/gathering-content/gathering-conte
         SortPostsPipe,
         MessageContent,
         GatheringContent,
+        MessageEditor,
     ],
     imports: [
         NbSidebarModule,

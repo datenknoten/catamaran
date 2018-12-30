@@ -1,0 +1,11 @@
+@import '../../../../../variables';
+
+.editor-preview {
+    width: 100%;
+    margin-bottom: $medium-gap;
+
+    input {
+        width: 100%;
+        padding: $medium-gap;
+    }
+}

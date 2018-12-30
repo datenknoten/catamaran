@@ -28,6 +28,10 @@
               "styles": [
                   "node_modules/@nebular/theme/styles/prebuilt/default.css",
                   "node_modules/highlight.js/styles/agate.css",
+                  "node_modules/codemirror/lib/codemirror.css",
+                  "node_modules/codemirror/addon/hint/show-hint.css",
+                  "node_modules/hypermd/mode/hypermd.css",
+                  "node_modules/hypermd/theme/hypermd-light.scss",
                   "src/styles.scss"
             ],
             "scripts": []
