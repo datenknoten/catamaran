@@ -9,3 +9,10 @@
         padding: $medium-gap;
     }
 }
+
+.preview-window {
+    width: 80vw;
+    padding: $medium-gap;
+    max-height: 70vh;
+    overflow: scroll;
+}

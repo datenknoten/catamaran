@@ -19,9 +19,20 @@
     </nb-card-footer>
     <nb-card-footer>
         <button nbButton (click)="cancel()">Cancel</button>
-        <button nbButton>Post</button>
+        <button nbButton (click)="submit()">Post</button>
     </nb-card-footer>
 </nb-card>
 <ng-template #contentTemplate let-data>
-    <post [post]=""></post>
+    <nb-card class="preview-window">
+        <nb-card-header>
+            Post Preview
+        </nb-card-header>
+        <nb-card-body>
+            <post [post]="previewPost"></post>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton>Not yet</button>
+            <button nbButton>Publish forever</button>
+        </nb-card-footer>
+    </nb-card>
 </ng-template>

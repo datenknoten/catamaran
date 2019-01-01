@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PublicFeed } from './pages/public-feed/public-feed.component';
 import { PostDetail } from './pages/post-detail/post-detail.component';
-import { NbCardModule, NbSidebarModule, NbLayoutModule, NbUserModule, NbListModule } from '@nebular/theme';
+import { NbCardModule, NbSidebarModule, NbLayoutModule, NbUserModule, NbListModule, NbDialogModule } from '@nebular/theme';
 import { BrowserModule } from '@angular/platform-browser';
 import { Post } from './components/post/post.component';
 import { RenderMd } from 'src/app/shared/pipes/render-md.pipe';
@@ -36,6 +36,7 @@ import { MessageEditor } from './components/message-editor/message-editor.compon
         BrowserModule,
         RouterModule,
         FontAwesomeModule,
+        NbDialogModule.forChild(),
     ],
     providers: [],
     exports: [

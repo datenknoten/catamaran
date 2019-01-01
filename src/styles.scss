@@ -1,5 +1,12 @@
 @import 'variables';
 
+html,
+.nb-theme-default nb-layout .layout,
+.nb-theme-default nb-menu,
+.nb-theme-default h1, .nb-theme-default h2, .nb-theme-default h3, .nb-theme-default h4, .nb-theme-default h5, .nb-theme-default h6, .nb-theme-default .h1, .nb-theme-default .h2, .nb-theme-default .h3, .nb-theme-default .h4, .nb-theme-default .h5, .nb-theme-default .h6 {
+    font-family: "Inter UI var", sans-serif;
+}
+
 .content.column img {
     max-width: 100%;
 }

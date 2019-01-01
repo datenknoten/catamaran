@@ -58,6 +58,17 @@
                         </div>
                     </a>
                 </div>
+                <div class="extra content" *ngIf="post.votes.length > 0">
+                    <a [routerLink]="['/post', post.id]">
+                        <p>Comments by</p>
+                        <div class="stacked image container">
+                            <div class="image" *ngFor="let identity of aggregateVotes">
+                                <img class="ui mini image"
+                                    [src]="getPicture(identity)">
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </nb-card-body>
         </nb-card>
     </div>

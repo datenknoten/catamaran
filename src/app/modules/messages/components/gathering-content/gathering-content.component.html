@@ -1,9 +1,11 @@
 <div class="content column crosshatch">
-    <h2>{{ latestMetadata.title  }}</h2>
-    <div [innerHtml]="latestMetadata.content | rendermd"></div>
-    <p *ngIf="latestMetadata.startDate">
-        Startdate: {{ latestMetadata.startDate.toISO() }}
-    </p>
+    <ng-container *ngIf="latestMetadata">
+        <h2>{{ latestMetadata.title  }}</h2>
+        <div [innerHtml]="latestMetadata.content | rendermd"></div>
+        <p *ngIf="latestMetadata.startDate">
+            Startdate: {{ latestMetadata.startDate.toISO() }}
+        </p>
+    </ng-container>
     <p *ngIf="post.attendees.length > 0">
         Participants:
     </p>

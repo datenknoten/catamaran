@@ -32,6 +32,7 @@
                   "node_modules/codemirror/addon/hint/show-hint.css",
                   "node_modules/hypermd/mode/hypermd.css",
                   "node_modules/hypermd/theme/hypermd-light.scss",
+                  "src/assets/fonts/inter-ui/inter-ui.scss",
                   "src/styles.scss"
             ],
             "scripts": []

@@ -87,5 +87,11 @@ export class Post {
         activities.sort((a, b) => b.activity.getTime() - a.activity.getTime());
 
         return activities;
-}
+    }
+
+    public get aggregateVotes() {
+        if (this.post.votes.length === 0) {
+            return [];
+        }
+    }
 }

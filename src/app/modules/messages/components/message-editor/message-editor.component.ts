@@ -1,6 +1,9 @@
-import { Component, Input, QueryList, ViewChildren, ElementRef } from "@angular/core";
-import { Message } from "@catamaran/hull";
+import { Component, Input, QueryList, ViewChildren, ElementRef, ViewChild } from "@angular/core";
+import { Message, Identity } from "@catamaran/hull";
 import * as hyperMD from 'hypermd';
+import { Store } from "@ngxs/store";
+import { GlobalState } from "src/app/shared/states/global.state";
+import { NbDialogService } from "@nebular/theme";
 
 @Component({
     selector: 'message-editor',
@@ -8,6 +11,11 @@ import * as hyperMD from 'hypermd';
     styleUrls: [ './message-editor.component.scss' ],
 })
 export class MessageEditor {
+    public constructor(
+        public store: Store,
+        private dialogService: NbDialogService
+    ) {}
+
     public previewPost?: Message;
 
     @Input()
@@ -16,10 +24,12 @@ export class MessageEditor {
     @ViewChildren('editor')
     private editorContainer!: QueryList<any>;
 
+    @ViewChild('contentTemplate')
+    private preview: any;
+
     public editor: any;
 
     public setupEditor() {
-        const that = this;
         this.previewPost = new Message();
         this.visible = true;
 
@@ -30,49 +40,11 @@ export class MessageEditor {
             }
             const editorContainer = item.first;
 
-            const getHints = function(editor: any, cb: Function, _options: any) {
-                const word = /[\w$]+/;
-                const cur = editor.getCursor();
-                const curLine = editor.getLine(cur.line);
-                const end = cur.ch;
-                let start = end;
-                while (start && word.test(curLine.charAt(start - 1))) {
-                    --start;
-                }
-                const curWord = start !== end && curLine.slice(start, end);
-
-
-                // that._suggestion.searchTerm.next(curWord);
-
-                // that._suggestion.suggestions.subscribe(items => {
-                //     cb({
-                //         list: items,
-                //         from: cm.Pos(cur.line, start),
-                //         to: cm.Pos(cur.line, end),
-                //     });
-                // });
-            };
-            // (getHints as any).async = true;
-
-            // if (typeof this.replyText === 'string') {
-            //     editorContainer.nativeElement.value = this.replyText;
-            //     this.replyText = undefined;
-            // }
-
             this.editor = hyperMD.fromTextArea(editorContainer.nativeElement, {
-                extraKeys: { 'Ctrl-Space': 'autocomplete' },
                 lineNumbers: false,
-                hintOptions: {
-                    hint: getHints,
-                },
                 // hmdInsertFile: this.fileHandler.bind(this),
             });
 
-            // if (this.context instanceof PostModel) {
-            //     editorContainer.nativeElement.scrollIntoView(true);
-            // } else {
-            //     editorContainer.nativeElement.scrollIntoView(false);
-            // }
             this.editor.focus();
         });
     }
@@ -80,5 +52,37 @@ export class MessageEditor {
     public cancel() {
         this.editor = undefined;
         this.visible = false;
+    }
+
+    public submit() {
+        const post = new Message();
+
+        post.text = this.editor.getValue();
+
+        post.author = this
+            .store
+            .selectSnapshot(
+                (state: GlobalState) => state.identity.identities['self'],
+            );
+
+        // if (!(typeof this.context === 'undefined')) {
+        //     if (this.context instanceof PostModel) {
+        //         if (typeof this.context.rootId === 'string') {
+        //             post.rootId = this.context.rootId;
+        //         } else {
+        //             post.rootId = this.context.id;
+        //         }
+        //         post.primaryChannel = this.context.primaryChannel;
+        //     } else if (this.context !== 'public') {
+        //         post.primaryChannel = this.context;
+        //     }
+        // }
+
+        this.previewPost = post;
+
+
+        console.log(this.previewPost);
+
+        this.dialogService.open(this.preview);
     }
 }
